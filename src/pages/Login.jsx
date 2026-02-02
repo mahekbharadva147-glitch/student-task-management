@@ -1,3 +1,4 @@
+import{Link} from "react-router-dom";
 import "./Login.css";
 import React from "react";
 
@@ -36,9 +37,12 @@ const Login=() =>{
                     Login
                 </button>
             </form>
-
-            
+            {/* Link to Ragister Page */}
+            <p className="link-text">
+                Don't have an account? <Link to="/Ragister">Ragister here</Link>
+            </p>
+  
         </div>
-    )
-}
-export default Login
+    );
+};
+export default Login;
