@@ -137,9 +137,9 @@ const Ragister = () => {
           </button>
         </form>
 
-        {/*Link to Register page*/}
-        <p ClassName="link-text">
-          Already have an account?<Link to="/Ragister">Ragister here</Link>
+        {/*Link to Ragister page*/}
+        <p className="link-text">
+          Already have an account?<Link to="/login">Login here</Link>
         </p>
       </div>
     </>
