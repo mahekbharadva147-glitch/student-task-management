@@ -3,36 +3,43 @@ import Navbar from "../components/Navbar";
 import { useNavigate } from "react-router-dom";
 import TaskList from "../components/TaskList";
 
-
-
 const Dashboard = () => {
-const navigate=useNavigate()
-const[tasks,setTask]=useState([])
-useEffect(()=>{
-  fetchData();
-},[])
+  const navigate = useNavigate()
+  const [tasks, setTasks] = useState([])
 
-const fetchData=async() => {
-  try{
-    const response=await fetch ("http://localhost:3000/task");
-    const data=response.json();
-    setTask(data);
-  }catch(error){
-    console.log(error)
-  }
-}
-    const handleLogout=()=>{
-         localStorage.removeItem('loginData')
-         localStorage.removeItem('authData')
-         //localStorage.clear()
-         navigate('/login')
+  useEffect(()=>{
+    fetchData();
+  },[])
+
+  const fetchData =async () => {
+    try {
+      const response = await fetch("http://localhost:3000/tasks");
+      const data = await response.json();
+      setTasks(data);
+    } catch (error) {
+      console.log(error)
     }
+  };
+  useEffect(()=>{
+    console.log('called after API',tasks)
+  },[tasks])
+  useEffect(()=>{
+    fetchData();
+  },[])
+
+  const handleLogout = () =>{
+    // console.log('click from dashboard')
+    localStorage.removeItem('loginData')
+    localStorage.removeItem('authData')
+    // localStorage.clear()
+    navigate('/login')
+  }
+
   return (
     <div>
-      <Navbar title="Task Managemnet" onLogout={handleLogout}/>
-      <h1>MY TASK</h1>
-      <TaskList/>
-      <p>Welcome! You are logged in 🎉</p>
+      <Navbar title="Task Management" onLogout={handleLogout}/>
+      <h1>MY TASKS</h1>
+      <TaskList tasks={tasks}/>
     </div>
   );
 };
